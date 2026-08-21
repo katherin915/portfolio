@@ -6,8 +6,17 @@ const OpenAI = require("openai");
 const knowledge = require("./knowledge");
 
 const app = express();
+app.use(cors({
+    origin: [
+        "https://katherin915.github.io",
+        "http://127.0.0.1:5500",
+        "http://localhost:5500"
+    ],
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type"]
+}));
 
-app.use(cors());
+app.options("*", cors());
 app.use(express.json());
 
 const client = new OpenAI({

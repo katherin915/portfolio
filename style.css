@@ -1,0 +1,1000 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #0f172a;
+    color: white;
+    line-height: 1.6;
+}
+
+/* ================= NAVBAR ================= */
+
+header{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #111827;
+    z-index: 1000;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+}
+
+.logo{
+    color: #38bdf8;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.nav-links{
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-links a{
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.nav-links a:hover{
+    color: #38bdf8;
+}
+
+/* ================= HERO SECTION ================= */
+
+
+.hero{
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 120px 10%;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+/* Hero Content */
+
+.hero-content{
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Hero Image */
+
+.hero-image{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-image img{
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #38bdf8;
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
+}
+
+.hero-content h1{
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.hero-content span{
+    color: #38bdf8;
+}
+
+.hero-content p{
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #cbd5e1;
+}
+
+/* Buttons */
+
+.btn{
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #38bdf8;
+    color: black;
+    text-decoration: none;
+    border-radius: 8px;
+    margin: 10px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn:hover{
+    transform: scale(1.05);
+}
+
+.secondary-btn{
+    background-color: transparent;
+    border: 2px solid #38bdf8;
+    color: #38bdf8;
+}
+
+/* ================= SECTION COMMON ================= */
+
+section{
+    padding: 100px 10%;
+}
+
+.section-title{
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 50px;
+    color: #38bdf8;
+}
+
+/* ================= ABOUT SECTION ================= */
+
+.about-content{
+    text-align: center;
+    max-width: 800px;
+    margin: auto;
+    font-size: 18px;
+    color: #cbd5e1;
+}
+
+/* ================= SKILLS ================= */
+
+.skills-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.skill-card{
+    background-color: #1e293b;
+    padding: 30px;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.skill-card:hover{
+    transform: translateY(-10px);
+}
+
+.skill-card h3{
+    margin-bottom: 15px;
+    color: #38bdf8;
+}
+
+/* ================= EDUCATION ================= */
+
+.education-card{
+    background-color: #1e293b;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 15px;
+}
+
+/* ================= PROJECTS ================= */
+
+.project-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.project-card{
+    background-color: #1e293b;
+    padding: 25px;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.project-card:hover{
+    transform: translateY(-10px);
+}
+
+.project-card h3{
+    color: #38bdf8;
+    margin-bottom: 15px;
+}
+
+.project-buttons{
+    margin-top: 20px;
+}
+
+/* ================= ACHIEVEMENTS ================= */
+
+.achievement-list{
+    max-width: 700px;
+    margin: auto;
+}
+
+.achievement-list li{
+    margin-bottom: 15px;
+    background-color: #1e293b;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* ================= CERTIFICATIONS ================= */
+
+.cert-card{
+    background-color: #1e293b;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+/* ================= PROFILES ================= */
+
+.profile-links{
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.profile-links a{
+    text-decoration: none;
+    color: white;
+    background-color: #1e293b;
+    padding: 15px 25px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.profile-links a:hover{
+    background-color: #38bdf8;
+    color: black;
+}
+
+/* ================= CONTACT ================= */
+
+.contact-form{
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form input,
+.contact-form textarea{
+    margin-bottom: 20px;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    font-size: 16px;
+}
+
+.contact-form textarea{
+    height: 150px;
+    resize: none;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background-color: #111827;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 768px){
+
+    .navbar{
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .hero-content h1{
+        font-size: 40px;
+    }
+
+    .section-title{
+        font-size: 32px;
+    }
+
+}
+/* Sticky Navbar */
+
+.sticky{
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+/* Scroll Animation */
+
+.skill-card,
+.project-card,
+.education-card,
+.cert-card{
+    opacity: 0;
+    transform: translateY(50px);
+    transition: 0.6s;
+}
+
+.skill-card.show,
+.project-card.show,
+.education-card.show,
+.cert-card.show{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Typing Text */
+
+.typing{
+    color: #38bdf8;
+    font-weight: bold;
+}
+/* ================= CERTIFICATE IMAGES ================= */
+
+.cert-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.cert-card{
+    background-color: #1e293b;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.cert-card:hover{
+    transform: translateY(-10px);
+}
+
+.cert-card img{
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 3px solid #38bdf8;
+}
+
+.cert-card h3{
+    margin-top: 20px;
+    color: #38bdf8;
+}
+
+.cert-card p{
+    padding: 10px 20px;
+    color: #cbd5e1;
+}
+/* ================= PROJECT IMAGES ================= */
+
+.project-card img{
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+/* ================= SOCIAL ICONS ================= */
+
+.social-icons{
+    margin-top: 25px;
+    display: flex;
+    gap: 20px;
+}
+
+.social-icons a{
+    width: 50px;
+    height: 50px;
+    background-color: #1e293b;
+    color: #38bdf8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 22px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover{
+    background-color: #38bdf8;
+    color: black;
+    transform: translateY(-5px);
+}
+/* ================= MOBILE MENU ================= */
+
+.menu-toggle{
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+}
+
+/* Mobile Responsive */
+
+@media(max-width: 768px){
+
+    .menu-toggle{
+        display: block;
+    }
+
+    .nav-links{
+        position: absolute;
+        top: 80px;
+        right: -100%;
+        background-color: #111827;
+        width: 220px;
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+        transition: 0.3s;
+        border-radius: 10px;
+    }
+
+    .nav-links.active{
+        right: 20px;
+    }
+
+}
+/* ================= DARK LIGHT TOGGLE ================= */
+
+.theme-toggle{
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: 20px;
+    color: white;
+    transition: 0.3s;
+}
+
+.theme-toggle:hover{
+    transform: rotate(20deg);
+}
+
+/* ================= LIGHT MODE ================= */
+
+body.light-mode{
+    background-color: #f8fafc;
+    color: black;
+}
+
+/* Navbar */
+
+body.light-mode header{
+    background-color: white;
+}
+
+body.light-mode .nav-links a{
+    color: black;
+}
+
+body.light-mode .logo{
+    color: #0284c7;
+}
+
+/* Cards */
+
+body.light-mode .skill-card,
+body.light-mode .project-card,
+body.light-mode .education-card,
+body.light-mode .cert-card,
+body.light-mode .achievement-list li{
+    background-color: white;
+    color: black;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Paragraphs */
+
+body.light-mode p{
+    color: #334155;
+}
+
+/* Buttons */
+
+body.light-mode .secondary-btn{
+    color: #0284c7;
+    border-color: #0284c7;
+}
+
+/* Footer */
+
+body.light-mode footer{
+    background-color: white;
+    color: black;
+}
+/* ================= PARTICLES BACKGROUND ================= */
+
+#particles-js{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    background-color: #0f172a;
+}
+
+/* Light Mode Background */
+
+body.light-mode #particles-js{
+    background-color: #f8fafc;
+}
+/* =========================
+   AI CHATBOT
+   ========================= */
+
+.chatbot-container {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+    font-family: inherit;
+}
+
+/* Floating button */
+.chatbot-toggle {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background: #2563eb;
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease;
+}
+
+.chatbot-toggle:hover {
+    transform: scale(1.08);
+}
+
+/* Chat window */
+.chatbot-window {
+    position: absolute;
+    bottom: 75px;
+    right: 0;
+
+    width: 360px;
+    height: 500px;
+
+    background: white;
+    border-radius: 18px;
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+
+    border: 1px solid #e5e7eb;
+}
+
+/* Header */
+.chatbot-header {
+    background: #2563eb;
+    color: white;
+
+    padding: 15px 18px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chatbot-header h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.chatbot-header span {
+    font-size: 12px;
+    opacity: 0.85;
+}
+
+#chatbot-close {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* =================================
+   CHATBOT
+================================= */
+
+.chatbot-window {
+    width: min(500px, 90vw);
+    height: min(700px, 85vh);
+
+    min-width: 380px;
+    min-height: 450px;
+
+    max-width: 90vw;
+    max-height: 85vh;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    resize: both;
+}
+
+
+/* =================================
+   MESSAGES AREA
+================================= */
+
+.chatbot-messages {
+    flex: 1;
+    min-height: 0;
+
+    padding: 18px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    background: #f8fafc;
+
+    scroll-behavior: smooth;
+}
+
+
+/* =================================
+   BOT MESSAGE
+================================= */
+
+.bot-message {
+    align-self: flex-start;
+
+    width: fit-content;
+    max-width: 92%;
+
+    background: white;
+    color: #1f2937;
+
+    padding: 14px 16px;
+    margin: 4px 0;
+
+    border-radius: 14px 14px 14px 4px;
+
+    font-size: 15px;
+    line-height: 1.6;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+    box-sizing: border-box;
+
+    /* IMPORTANT:
+       The individual message must NOT scroll */
+    overflow: visible;
+
+    word-break: normal;
+    overflow-wrap: normal;
+}
+
+
+/* =================================
+   USER MESSAGE
+================================= */
+
+.user-message {
+    align-self: flex-end;
+
+    width: fit-content;
+    max-width: 82%;
+
+    background: #2563eb;
+    color: white;
+
+    padding: 12px 16px;
+    margin: 4px 0;
+
+    border-radius: 14px 14px 4px 14px;
+
+    font-size: 15px;
+    line-height: 1.5;
+
+    box-sizing: border-box;
+
+    word-break: normal;
+    overflow-wrap: normal;
+}
+
+
+/* =================================
+   MARKDOWN
+================================= */
+
+.bot-message h1,
+.bot-message h2,
+.bot-message h3 {
+    margin: 4px 0 10px;
+
+    color: #2563eb;
+}
+
+.bot-message strong {
+    color: #111827;
+    font-weight: 700;
+}
+
+.bot-message em {
+    color: #4b5563;
+}
+
+.bot-message ul,
+.bot-message ol {
+    margin: 8px 0;
+    padding-left: 22px;
+}
+
+.bot-message li {
+    margin: 5px 0;
+}
+
+
+/* =================================
+   LINKS
+================================= */
+
+.bot-message a {
+    color: #2563eb;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.bot-message a:hover {
+    text-decoration: underline;
+}
+
+
+/* =================================
+   TABLES
+================================= */
+
+.bot-message table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin: 12px 0;
+
+    font-size: 14px;
+}
+
+.bot-message th,
+.bot-message td {
+    padding: 9px 10px;
+
+    text-align: left;
+    vertical-align: top;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.bot-message th {
+    color: #2563eb;
+
+    font-weight: 700;
+
+    background: #f8fafc;
+}
+
+.bot-message td {
+    color: #374151;
+}
+
+
+/* =================================
+   CODE
+================================= */
+
+.bot-message code {
+    background: #eef2ff;
+
+    padding: 2px 6px;
+
+    border-radius: 5px;
+
+    font-size: 13px;
+}
+
+
+/* =================================
+   INPUT AREA
+================================= */
+
+.chatbot-input-area {
+    display: flex;
+
+    padding: 10px;
+
+    background: white;
+
+    border-top: 1px solid #e5e7eb;
+
+    flex-shrink: 0;
+}
+
+#chatbot-input {
+    flex: 1;
+
+    min-width: 0;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 20px;
+
+    padding: 10px 14px;
+
+    outline: none;
+
+    font-size: 14px;
+}
+
+#chatbot-input:focus {
+    border-color: #2563eb;
+}
+
+#chatbot-send {
+    width: 40px;
+    height: 40px;
+
+    margin-left: 8px;
+
+    flex-shrink: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+
+    color: white;
+
+    cursor: pointer;
+}
+/* =================================
+   RESIZABLE CHATBOT
+================================= */
+
+.chatbot-window {
+    position: relative;
+
+    resize: both;
+    overflow: hidden;
+
+    min-width: 380px;
+    min-height: 450px;
+
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+
+/* Visible resize indicator */
+
+.chatbot-window::after {
+    content: "↘";
+
+    position: absolute;
+
+    right: 6px;
+    bottom: 3px;
+
+    width: 22px;
+    height: 22px;
+
+    color: #2563eb;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    pointer-events: none;
+
+    z-index: 20;
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 500px) {
+
+    .chatbot-window {
+
+        width: calc(100vw - 30px);
+        height: 75vh;
+
+        min-width: 0;
+        min-height: 400px;
+
+        max-width: calc(100vw - 30px);
+        max-height: 85vh;
+
+        right: 15px;
+        bottom: 15px;
+    }
+
+    .bot-message {
+        max-width: 94%;
+    }
+
+    .user-message {
+        max-width: 88%;
+    }
+}
+
+
+/* =================================
+   LONG TEXT / CODE BLOCK FIX
+================================= */
+
+.bot-message p {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+
+/* Architecture / code blocks */
+
+.bot-message pre {
+    max-width: 100%;
+
+    box-sizing: border-box;
+
+    white-space: pre-wrap;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+
+    overflow-x: hidden;
+
+    background: #f1f5f9;
+
+    padding: 10px 12px;
+
+    border-radius: 8px;
+
+    margin: 10px 0;
+}
+
+
+.bot-message pre code {
+    white-space: pre-wrap;
+
+    overflow-wrap: anywhere;
+
+    word-break: break-word;
+
+    background: transparent;
+
+    padding: 0;
+}

@@ -1020,33 +1020,105 @@
             // =========================
 
             fetch(
-                "https://katherin-ai-backend.onrender.com/api/chat",
-                {
-                    method: "POST",
+    "https://katherin-ai.onrender.com/chat",
+    {
+        method: "POST",
 
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+        headers: {
+            "Content-Type": "application/json"
+        },
 
-                    body: JSON.stringify({
-                        message: message
-                    })
-                }
-            )
+        body: JSON.stringify({
+            question: message,
+            history: []
+        })
+    }
+)
+.then(response => {
 
-            .then(response =>
-                response.json()
-            )
+    if (!response.ok) {
+        throw new Error("Server returned " + response.status);
+    }
 
-            .then(data => {
+    return response.text();
+})
+.then(reply => {
 
-                clearInterval(
-                    thinkingAnimation
-                );
+    clearInterval(thinkingAnimation);
 
-                const reply =
-                    data.reply ||
-                    "Sorry, I couldn't generate a response.";
+    botMessage.textContent = "✍️ Typing...";
+
+    chatbotMessages.scrollTop =
+        chatbotMessages.scrollHeight;
+
+    setTimeout(() => {
+
+        const formattedReply =
+            DOMPurify.sanitize(
+                marked.parse(reply)
+            );
+
+        const tempContainer =
+            document.createElement("div");
+
+        tempContainer.innerHTML =
+            formattedReply;
+
+        const blocks =
+            Array.from(
+                tempContainer.children
+            );
+
+        botMessage.innerHTML = "";
+
+        let blockIndex = 0;
+
+        function showNextBlock() {
+
+            if (blockIndex >= blocks.length) {
+                return;
+            }
+
+            const block =
+                blocks[blockIndex];
+
+            block.style.opacity = "0";
+            block.style.transform = "translateY(8px)";
+            block.style.transition =
+                "opacity 0.35s ease, transform 0.35s ease";
+
+            botMessage.appendChild(block);
+
+            requestAnimationFrame(() => {
+                block.style.opacity = "1";
+                block.style.transform = "translateY(0)";
+            });
+
+            blockIndex++;
+
+            chatbotMessages.scrollTop =
+                chatbotMessages.scrollHeight;
+
+            setTimeout(showNextBlock, 250);
+        }
+
+        showNextBlock();
+
+    }, 500);
+
+})
+.catch(error => {
+
+    clearInterval(thinkingAnimation);
+
+    console.error("Chatbot error:", error);
+
+    botMessage.textContent =
+        "Sorry, I couldn't connect to my AI assistant.";
+
+    chatbotMessages.scrollTop =
+        chatbotMessages.scrollHeight;
+});
 
 
                 // =========================

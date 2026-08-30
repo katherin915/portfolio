@@ -892,102 +892,217 @@
         // =========================
         function sendChatMessage() {
 
-    const message = chatbotInput.value.trim();
+            const message = chatbotInput.value.trim();
 
-    if (message === "") {
-        return;
-    }
+            if (message === "") {
+                return;
+            }
 
-    // =========================
-    // USER MESSAGE
-    // =========================
+            // =========================
+            // USER MESSAGE
+            // =========================
 
-    const userMessage = document.createElement("div");
+            const userMessage = document.createElement("div");
 
-    userMessage.className = "user-message";
-    userMessage.textContent = message;
+            userMessage.className = "user-message";
+            userMessage.textContent = message;
 
-    chatbotMessages.appendChild(userMessage);
+            chatbotMessages.appendChild(userMessage);
 
-    chatbotInput.value = "";
+            chatbotInput.value = "";
 
-    chatbotMessages.scrollTop =
-        chatbotMessages.scrollHeight;
-
-
-    // =========================
-    // BOT MESSAGE
-    // =========================
-
-    const botMessage = document.createElement("div");
-
-    botMessage.className = "bot-message";
-
-    chatbotMessages.appendChild(botMessage);
+            chatbotMessages.scrollTop =
+                chatbotMessages.scrollHeight;
 
 
-    // =========================
-    // THINKING ANIMATION
-    // =========================
+            // =========================
+            // BOT MESSAGE
+            // =========================
 
-    let dots = 0;
+            const botMessage = document.createElement("div");
 
-    botMessage.textContent = "🤔 Thinking";
+            botMessage.className = "bot-message";
 
-    const thinkingAnimation = setInterval(() => {
+            chatbotMessages.appendChild(botMessage);
 
-        dots++;
 
-        if (dots > 3) {
-            dots = 0;
+            // =========================
+            // THINKING ANIMATION
+            // =========================
+
+            let dots = 0;
+
+            botMessage.textContent = "🤔 Thinking";
+
+            const thinkingAnimation = setInterval(() => {
+
+                dots++;
+
+                if (dots > 3) {
+                    dots = 0;
+                }
+
+                botMessage.textContent =
+                    "🤔 Thinking" + ".".repeat(dots);
+
+                chatbotMessages.scrollTop =
+                    chatbotMessages.scrollHeight;
+
+            }, 400);
+
+
+            // =========================
+            // SEND TO KATHERINAI
+            // =========================
+
+            fetch(
+                "https://katherin-ai.onrender.com/chat",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        question: message,
+                        history: []
+                    })
+                }
+            )
+
+                .then(response => {
+
+                    if (!response.ok) {
+                        throw new Error(
+                            "Server returned " + response.status
+                        );
+                    }
+
+                    return response.text();
+
+                })
+
+                .then(reply => {
+
+                    clearInterval(thinkingAnimation);
+
+                    botMessage.textContent = "✍️ Typing...";
+
+                    chatbotMessages.scrollTop =
+                        chatbotMessages.scrollHeight;
+
+
+                    setTimeout(() => {
+
+                        const formattedReply =
+                            DOMPurify.sanitize(
+                                marked.parse(reply)
+                            );
+
+
+                        const tempContainer =
+                            document.createElement("div");
+
+                        tempContainer.innerHTML =
+                            formattedReply;
+
+
+                        const blocks =
+                            Array.from(
+                                tempContainer.children
+                            );
+
+
+                        botMessage.innerHTML = "";
+
+                        let blockIndex = 0;
+
+
+                        // =========================
+                        // SHOW RESPONSE
+                        // =========================
+
+                        function showNextBlock() {
+
+                            if (
+                                blockIndex >=
+                                blocks.length
+                            ) {
+                                return;
+                            }
+
+
+                            const block =
+                                blocks[blockIndex];
+
+
+                            block.style.opacity = "0";
+
+                            block.style.transform =
+                                "translateY(8px)";
+
+                            block.style.transition =
+                                "opacity 0.35s ease, transform 0.35s ease";
+
+
+                            botMessage.appendChild(block);
+
+
+                            requestAnimationFrame(() => {
+
+                                block.style.opacity = "1";
+
+                                block.style.transform =
+                                    "translateY(0)";
+
+                            });
+
+
+                            blockIndex++;
+
+                            chatbotMessages.scrollTop =
+                                chatbotMessages.scrollHeight;
+
+
+                            setTimeout(
+                                showNextBlock,
+                                250
+                            );
+                        }
+
+
+                        showNextBlock();
+
+                    }, 500);
+
+                })
+
+                .catch(error => {
+
+                    clearInterval(thinkingAnimation);
+
+                    console.error(
+                        "Chatbot error:",
+                        error
+                    );
+
+                    botMessage.textContent =
+                        "Sorry, I couldn't connect to my AI assistant.";
+
+                    chatbotMessages.scrollTop =
+                        chatbotMessages.scrollHeight;
+
+                });
+
         }
+
+        // =========================
+        // TYPING INDICATOR
+        // =========================
 
         botMessage.textContent =
-            "🤔 Thinking" + ".".repeat(dots);
-
-        chatbotMessages.scrollTop =
-            chatbotMessages.scrollHeight;
-
-    }, 400);
-
-
-    // =========================
-    // SEND TO KATHERINAI
-    // =========================
-
-    fetch(
-        "https://katherin-ai.onrender.com/chat",
-        {
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify({
-                question: message,
-                history: []
-            })
-        }
-    )
-
-    .then(response => {
-
-        if (!response.ok) {
-            throw new Error(
-                "Server returned " + response.status
-            );
-        }
-
-        return response.text();
-
-    })
-
-    .then(reply => {
-
-        clearInterval(thinkingAnimation);
-
-        botMessage.textContent = "✍️ Typing...";
+            "✍️ Typing...";
 
         chatbotMessages.scrollTop =
             chatbotMessages.scrollHeight;
@@ -1046,12 +1161,15 @@
                     "opacity 0.35s ease, transform 0.35s ease";
 
 
-                botMessage.appendChild(block);
+                botMessage.appendChild(
+                    block
+                );
 
 
                 requestAnimationFrame(() => {
 
-                    block.style.opacity = "1";
+                    block.style.opacity =
+                        "1";
 
                     block.style.transform =
                         "translateY(0)";
@@ -1061,6 +1179,7 @@
 
                 blockIndex++;
 
+
                 chatbotMessages.scrollTop =
                     chatbotMessages.scrollHeight;
 
@@ -1069,6 +1188,7 @@
                     showNextBlock,
                     250
                 );
+
             }
 
 
@@ -1076,127 +1196,7 @@
 
         }, 500);
 
-    })
-
-    .catch(error => {
-
-        clearInterval(thinkingAnimation);
-
-        console.error(
-            "Chatbot error:",
-            error
-        );
-
-        botMessage.textContent =
-            "Sorry, I couldn't connect to my AI assistant.";
-
-        chatbotMessages.scrollTop =
-            chatbotMessages.scrollHeight;
-
-    });
-
-}
-
-            // =========================
-            // TYPING INDICATOR
-            // =========================
-
-            botMessage.textContent =
-                "✍️ Typing...";
-
-            chatbotMessages.scrollTop =
-                chatbotMessages.scrollHeight;
-
-
-            setTimeout(() => {
-
-                const formattedReply =
-                    DOMPurify.sanitize(
-                        marked.parse(reply)
-                    );
-
-
-                const tempContainer =
-                    document.createElement("div");
-
-                tempContainer.innerHTML =
-                    formattedReply;
-
-
-                const blocks =
-                    Array.from(
-                        tempContainer.children
-                    );
-
-
-                botMessage.innerHTML = "";
-
-                let blockIndex = 0;
-
-
-                // =========================
-                // SHOW RESPONSE
-                // =========================
-
-                function showNextBlock() {
-
-                    if (
-                        blockIndex >=
-                        blocks.length
-                    ) {
-                        return;
-                    }
-
-
-                    const block =
-                        blocks[blockIndex];
-
-
-                    block.style.opacity = "0";
-
-                    block.style.transform =
-                        "translateY(8px)";
-
-                    block.style.transition =
-                        "opacity 0.35s ease, transform 0.35s ease";
-
-
-                    botMessage.appendChild(
-                        block
-                    );
-
-
-                    requestAnimationFrame(() => {
-
-                        block.style.opacity =
-                            "1";
-
-                        block.style.transform =
-                            "translateY(0)";
-
-                    });
-
-
-                    blockIndex++;
-
-
-                    chatbotMessages.scrollTop =
-                        chatbotMessages.scrollHeight;
-
-
-                    setTimeout(
-                        showNextBlock,
-                        250
-                    );
-
-                }
-
-
-                showNextBlock();
-
-            }, 500);
-
-        })
+    
 
 
             // =========================
